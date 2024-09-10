@@ -33,7 +33,13 @@ public class GetMethodQuiz08 extends HttpServlet {
 		out.print("<html><head><title>검색</title></head><body>");
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).contains(search)) {
+				// 1)
 				out.print(list.get(i).replace(search, "<b>" + search + "</b>" ) + "<br>");
+				// 2)
+//				String text = list.get(i);
+//				String[] words = text.split(search);
+//				out.print(words[0] + "<b>" + search + "</b>" + words[1] + "<br>");
+				
 			}
 		}
 		out.print("</body></html>");
