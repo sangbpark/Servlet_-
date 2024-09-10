@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -45,11 +46,16 @@
 	<%
 		String birthDay = "20010820";
 		int year = Integer.parseInt( birthDay.substring(0, 4));
-		
-		int age = 2024 - year;		
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		int nowYear = Integer.parseInt(sdf.format(now));
+		int age = nowYear - year;		
 	%>
 	
-	<%= age %>
+	1부터 50까지의 합은 <%= getSum(50) %>입니다. <br>
+	평균 점수는 <%= average %> 입니다. <br>
+	채점 결과는 <%= score %>점입니다. <br>
+	<%= birthDay %>의 나이는 <%= age %> 세입니다.
 	
 
 </body>
