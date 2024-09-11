@@ -34,7 +34,7 @@
 	
 	
 	<%
-	List<String> scoreList = Arrays.asList(new String[]{"X", "O", "O", "O", "X", "O", "O", "O", "X", "O"});
+		List<String> scoreList = Arrays.asList(new String[]{"X", "O", "O", "O", "X", "O", "O", "O", "X", "O"});
 		int score = 0;
 		for (String temp : scoreList) {
 			if (temp.equals("O")) {
@@ -52,10 +52,10 @@
 		int age = nowYear - year;		
 	%>
 	
-	1부터 50까지의 합은 <%= getSum(50) %>입니다. <br>
-	평균 점수는 <%= average %> 입니다. <br>
-	채점 결과는 <%= score %>점입니다. <br>
-	<%= birthDay %>의 나이는 <%= age %> 세입니다.
+	<h1>1부터 50까지의 합은 <%= getSum(50) %>입니다.</h1>
+	<h1>평균 점수는 <%= average %> 입니다.</h1>
+	<h1>채점 결과는 <%= score %>점 입니다.</h1>
+	<h1><%= birthDay %>의 나이는 <%= age %>세 입니다.</h1>
 	
 
 </body>
