@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>검색 결과</title>
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -14,8 +14,8 @@
 <body>
 	<%
 		String keyword = request.getParameter("menu");
-		String check = request.getParameter("check");
-		
+		String check = request.getParameter("starPointFilter");
+		boolean exclude = check != null;
 		List<Map<String, Object>> list = new ArrayList<>();
 	    Map<String, Object> map = new HashMap<String, Object>() {{ put("name", "버거킹"); put("menu", "햄버거"); put("point", 4.3); } };
 	    list.add(map);
@@ -44,30 +44,19 @@
 			</thead>
 			<tbody>
 				<%
-					for (Map<String,Object>temp : list) {
+					for (Map<String, Object> temp : list) {
 						if (temp.get("menu").equals(keyword)) {
-							if (check == null) {
-				%>
-				<tr>
-					<td><%= keyword %></td>
-					<td><%= temp.get("name") %></td>
-					<td><%= temp.get("point") %></td>
-				</tr>
-				<%
-							} else {
-								
-								String pointStr = String.valueOf(temp.get("point"));
-								double point = Double.valueOf(pointStr);
-								if (point >= 4) {	
-				%>
-				<tr>
-					<td><%= keyword %></td>
-					<td><%= temp.get("name") %></td>
-					<td><%= temp.get("point") %></td>
-				</tr>
-				<%
-								}
+							if (exclude && (double)temp.get("point") <= 4.0) {
+								continue;
 							}
+				%>
+				<tr>
+					<td><%= temp.get("menu") %></td>
+					<td><%= temp.get("name") %></td>
+					<td><%= temp.get("point") %></td>
+				</tr>
+				<% 
+							
 						}
 					}
 				%>
