@@ -68,15 +68,14 @@
 	    	}
 	    };
 	    
-	    out.print(target);
 	%>
 	<div class="container">
 		<div class="d-flex">	
 			<div>
-				<img src="<%= target.get("image") %>" width="200px" alt="책 표지" >
+				<img src="<%= target.get("image") %>" width="300px" alt="책 표지" >
 			</div>
 			<div class="ml-4">
-				<div><span class="display-2"><b><%= target.get("title") %></b></span></div>
+				<div><span class="display-1 font-weight-bold"><%= target.get("title") %></span></div>
 				<div><span class="display-3 text-info"><%= target.get("author") %></span></div>
 				<div><span class="display-4 text-secondary"><%= target.get("publisher") %></span></div>
 			</div>

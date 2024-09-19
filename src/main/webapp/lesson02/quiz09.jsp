@@ -12,8 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <style>
 	#logo{
-		height:100px;
-		
+		height:100px;		
 	}
 	#navbar{
 		height:80px;
@@ -66,11 +65,11 @@
     list.add(map);
 %>
 
-	<div class="container">
+	<div id="wrap" class="container">
 		<header>
 			<div id="logo" class="d-flex justify-content-center align-items-center text-danger"><h2>SK Broadband IPTV</h2></div>
 			<nav id="navbar" class="bg-danger d-flex align-items-center">
-				<ul class="nav nav-fill w-100 font-weight-bold">
+				<ul class="nav nav-fill w-100">
 					<li class="nav-item"><a href="/lesson02/quiz09.jsp" class="nav-link text-white">전체</a></li>
 					<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=지상파" class="nav-link text-white">지상파</a></li>
 					<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=드라마" class="nav-link text-white">드라마</a></li>
@@ -111,7 +110,7 @@
 			
 			</table>
 		</section>
-		<footer id="copyright" class="d-flex justify-content-center align-items-center">Copyright 2021. marondal All Rights Reserved.</footer>
+		<footer id="copyright" class="d-flex justify-content-center align-items-center"><small>Copyright 2021. marondal All Rights Reserved.</small></footer>
 	
 	</div>
 </body>
