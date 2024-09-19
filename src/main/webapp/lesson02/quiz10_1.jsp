@@ -16,7 +16,6 @@ header {height:100px;}
 nav {height:40px;}
 .contents {min-height:500px;}
 footer {height:200px;}
-.banner {height:200px;}
 
 a, a:hover {text-decoration:none;}
 </style>
@@ -108,27 +107,37 @@ a, a:hover {text-decoration:none;}
 	}
 	if (target == null) {
 		%>
-		<script>window.history.back()</script>
+		<script>alert("노래가 없습니다.");window.history.back()</script>
 		<% 
 		return;
 	}
-	String title = (String)target.get("title");
 	int time = (int)target.get("time");
 	int min = time / 60;
 	int second = time % 60;
 	String timeStr = min + " : " + second;
 %>
 	<div id="wrap" class="container">
-		<header class="d-flex align-items-center">
-			<div id="logo" class="mr-4"><h2><a href="/lesson02/quiz10.jsp" class="text-success">Melong</a></h2></div>
-			<div class="form-group col-5 mt-3">
+	<header class="d-flex align-items-center">
+			<%-- 로고 영역 --%>
+			<div class="col-2">
+				<h3><a href="/lesson02/quiz10.jsp" class="text-success">Melong</a></h3>
+			</div>
+
+			<%-- 검색 영역 --%>
+			<div class="col-10">
 				<form method="get" action="/lesson02/quiz10_1.jsp">
-					<div class="input-group ml-4">
- 					 	<input type="text" class="form-control" value="<%= title %>">
-  						<div class="input-group-append">
-    						<button class="btn btn-info" type="submit">검색</button>
-  						</div>
+				<div class="input-group">
+					<input type="text" class="form-control col-5" name="title">
+					<div class="input-group-append">
+						<button class="btn btn-info" type="button" 
+						<% 
+							if (search == null) {
+								search = "";
+							}
+						%>
+						value=<%= search %>>검색</button>
 					</div>
+				</div>
 				</form>
 			</div>
 		</header>
@@ -142,11 +151,11 @@ a, a:hover {text-decoration:none;}
 			</ul>
 		</nav>
 		<section class="contents">
-			<div class="banner border border-success rounded d-flex align-items-center p-3">
+			<div class="border border-success rounded d-flex p-3">
 				<div>
-					<img src="<%= target.get("thumbnail") %>" width="170px" alt="아이유">
+					<img src="<%= target.get("thumbnail") %>" alt="앨범 표지" width="150">
 				</div>
-				<div class="d-flex align-items-start h-100 ml-3 mb-4">
+				<div class="ml-3">
 					<div>
 							<div class="display-4"><%= target.get("title") %></div>
 							<div class="text-success font-weight-bold"><%= target.get("singer") %></div>
