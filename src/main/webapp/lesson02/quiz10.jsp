@@ -114,7 +114,7 @@ a, a:hover {text-decoration:none;}
 					<div class="input-group">
 						<input type="text" class="form-control col-5" name="title">
 						<div class="input-group-append">
-							<button class="btn btn-info" type="button">검색</button>
+							<button class="btn btn-info" type="submit">검색</button>
 						</div>
 					</div>
 				</form>

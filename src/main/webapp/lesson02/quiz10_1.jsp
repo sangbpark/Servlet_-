@@ -107,7 +107,7 @@ a, a:hover {text-decoration:none;}
 	}
 	if (target == null) {
 		%>
-		<script>alert("노래가 없습니다.");window.history.back()</script>
+		<script>alert("노래가 없습니다.");window.history.back();</script>
 		<% 
 		return;
 	}
@@ -129,7 +129,7 @@ a, a:hover {text-decoration:none;}
 				<div class="input-group">
 					<input type="text" class="form-control col-5" name="title">
 					<div class="input-group-append">
-						<button class="btn btn-info" type="button" 
+						<button class="btn btn-info" type="submit" 
 						<% 
 							if (search == null) {
 								search = "";
