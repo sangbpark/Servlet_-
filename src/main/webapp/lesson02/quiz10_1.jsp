@@ -92,7 +92,31 @@ a, a:hover {text-decoration:none;}
     musicInfo.put("lyricist", "아이유");
     musicList.add(musicInfo);
     
-	String title = request.getParameter("title");
+	String id = request.getParameter("id");
+	String search = request.getParameter("title");
+	Map<String, Object> target = null;
+	for (Map<String, Object> music : musicList) {
+		if (search == null) {
+			if(id.equals(music.get("id").toString())) {
+				target = music;
+			}
+		} else {
+			if(search.equals(music.get("title"))) {
+				target = music;
+			}
+		}
+	}
+	if (target == null) {
+		%>
+		<script>window.history.back()</script>
+		<% 
+		return;
+	}
+	String title = (String)target.get("title");
+	int time = (int)target.get("time");
+	int min = time / 60;
+	int second = time % 60;
+	String timeStr = min + " : " + second;
 %>
 	<div id="wrap" class="container">
 		<header class="d-flex align-items-center">
@@ -119,67 +143,36 @@ a, a:hover {text-decoration:none;}
 		</nav>
 		<section class="contents">
 			<div class="banner border border-success rounded d-flex align-items-center p-3">
-			<%		
-				for (Map<String, Object> music : musicList) {
-					if(title.equals(music.get("title"))) {
-			%>
 				<div>
-					<img src="<%= music.get("thumbnail") %>" width="170px" alt="아이유">
+					<img src="<%= target.get("thumbnail") %>" width="170px" alt="아이유">
 				</div>
-				<div class="d-flex align-items-start h-100 ml-3 mb-5">
+				<div class="d-flex align-items-start h-100 ml-3 mb-4">
 					<div>
-							<div class="display-4"><%= music.get("title") %></div>
-							<div class="text-success font-weight-bold"><%= music.get("singer") %></div>
-							<div class="d-flext">
+							<div class="display-4"><%= target.get("title") %></div>
+							<div class="text-success font-weight-bold"><%= target.get("singer") %></div>
+							<div class="d-flex">
 								<div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
+									<div>앨범</div>
+									<div>재생시간</div>
+									<div>작곡가</div>
+									<div>작사가</div>
 								</div>
-								<div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
+								<div class="ml-3">
+									<div><%= target.get("album") %></div>
+									<div><%= timeStr %></div>
+									<div><%= target.get("composer") %></div>
+									<div><%= target.get("lyricist") %></div>
 								</div>
-							<table class="text-secondary">
-								<tr>
-									<th><small>앨범</small></th>
-									<td><small><%= music.get("album") %></small></td>
-								</tr>
-								<tr>
-									<th><small>재생시간</small></th>
-									<%
-										int time = (int)music.get("time");
-										int min = time / 60;
-										int second = time % 60;
-										String timeStr = min + " : " + second;
-									%>
-									<td><small><%= timeStr %></small></td>
-								</tr>
-								<tr>
-									<th><small>작곡가</small></th>
-									<td><small><%= music.get("composer") %></small></td>
-								</tr>
-								<tr>
-									<th><small>작사가</small></th>
-									<td><small><%= music.get("lyricist") %></small></td>
-								</tr>
-							</table>
 							</div>
 					</div>
 				</div>
-			<%
-					} 
-				}
-			%>
 			</div>
-		<article>
-			<div class="my-3"><h1>가사</h1></div>
-			<hr>
-			<div>가사 정보 없음</div>
-			<hr>
+			<article>
+				<div class="my-3"><h1>가사</h1></div>
+				<hr>
+				<div>가사 정보 없음</div>
+				<hr>
+			</article>
 		</section>
 		<footer class="d-flex align-items-center"><small class="ml-4">Copyright 2021. melong All Rights Reserved.</small></footer>
 	</div>

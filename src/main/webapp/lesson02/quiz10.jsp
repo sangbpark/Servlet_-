@@ -137,7 +137,7 @@ a, a:hover {text-decoration:none;}
 					</div>
 				</div>
 			</div>
-			<article>
+		<article>
 			<div class="my-3"><h1>곡 목록</h1></div>
 			<table class="table text-center">
 				<thead>
@@ -153,7 +153,7 @@ a, a:hover {text-decoration:none;}
 				%>
 					<tr>
 						<td><%= music.get("id") %></td>
-						<td><a href="/lesson02/quiz10_1.jsp?title=<%= music.get("title") %>"><%= music.get("title") %></a></td>
+						<td><a href="/lesson02/quiz10_1.jsp?id=<%= music.get("id") %>"><%= music.get("title") %></a></td>
 						<td><%= music.get("album") %></td>
 					</tr>
 				</tbody>
@@ -161,7 +161,7 @@ a, a:hover {text-decoration:none;}
 					}
 				%>
 			</table>
-			</article>
+		</article>
 		</section>
 		<footer class="d-flex align-items-center"><small class="ml-4">Copyright 2021. melong All Rights Reserved.</small></footer>
 	</div>
