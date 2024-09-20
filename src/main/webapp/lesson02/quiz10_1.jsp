@@ -91,20 +91,30 @@ a, a:hover {text-decoration:none;}
     musicInfo.put("lyricist", "아이유");
     musicList.add(musicInfo);
     
-	String id = request.getParameter("id");
-	String search = request.getParameter("title");
 	Map<String, Object> target = null;
-	for (Map<String, Object> music : musicList) {
-		if (search == null) {
-			if(id.equals(music.get("id").toString())) {
+	
+	if (request.getParameter("id") != null) {
+		int id = Integer.valueOf(request.getParameter("id"));
+		
+		for (Map<String, Object> music : musicList) {
+			
+			if(id == (int)music.get("id")) {
 				target = music;
-			}
-		} else {
-			if(search.equals(music.get("title"))) {
-				target = music;
+				break;
 			}
 		}
 	}
+	String search = request.getParameter("title");
+	if (search != null) {		
+		for (Map<String, Object> music : musicList) {
+			
+			if(search.equals(music.get("title"))) {
+				target = music;
+				break;
+			}
+		}
+	}
+
 	if (target == null) {
 		%>
 		<script>alert("노래가 없습니다.");window.history.back();</script>
@@ -112,9 +122,7 @@ a, a:hover {text-decoration:none;}
 		return;
 	}
 	int time = (int)target.get("time");
-	int min = time / 60;
-	int second = time % 60;
-	String timeStr = min + " : " + second;
+	String timeStr = (time / 60) + " : " + (time % 60);
 %>
 	<div id="wrap" class="container">
 	<header class="d-flex align-items-center">
@@ -127,15 +135,15 @@ a, a:hover {text-decoration:none;}
 			<div class="col-10">
 				<form method="get" action="/lesson02/quiz10_1.jsp">
 				<div class="input-group">
-					<input type="text" class="form-control col-5" name="title">
-					<div class="input-group-append">
-						<button class="btn btn-info" type="submit" 
+					<input type="text" class="form-control col-5" name="title"
 						<% 
 							if (search == null) {
 								search = "";
 							}
 						%>
-						value=<%= search %>>검색</button>
+						value="<%= search %>">
+					<div class="input-group-append">
+						<button class="btn btn-info" type="submit">검색</button>
 					</div>
 				</div>
 				</form>
@@ -159,14 +167,14 @@ a, a:hover {text-decoration:none;}
 					<div>
 							<div class="display-4"><%= target.get("title") %></div>
 							<div class="text-success font-weight-bold"><%= target.get("singer") %></div>
-							<div class="d-flex">
+							<div class="d-flex mt-3">
 								<div>
 									<div>앨범</div>
 									<div>재생시간</div>
 									<div>작곡가</div>
 									<div>작사가</div>
 								</div>
-								<div class="ml-3">
+								<div class="ml-4">
 									<div><%= target.get("album") %></div>
 									<div><%= timeStr %></div>
 									<div><%= target.get("composer") %></div>
