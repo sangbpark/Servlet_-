@@ -27,7 +27,7 @@
 				<tr>
 					<th>사이트</th>
 					<th>사이트 주소</th>
-					<th>탈퇴</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,17 +37,16 @@
 				<tr>
 					<td><%= res.getString("name") %></td>
 					<td><a href="<%= res.getString("url") %>"><%= res.getString("url") %></a></td>
-					<td><a href="/lesson03/delete_quiz02?id=<%= res.getString("id") %>">탈퇴하기</a></td>
+					<td><a href="/lesson03/delete_quiz02?id=<%= res.getString("id") %>" class="btn btn-danger">삭제하기</a></td>
 				</tr>
 			<%
 				}
 			%>
 			</tbody>
-		</table>
-	
+			<%
+				ms.disconnect();
+			%>
+		</table>	
 	</div>
 </body>
-<%
-	ms.disconnect();
-%>
 </html>
