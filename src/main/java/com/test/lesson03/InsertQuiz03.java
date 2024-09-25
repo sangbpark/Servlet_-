@@ -17,7 +17,7 @@ public class InsertQuiz03 extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String nickname = request.getParameter("nickname");
+		int sellerId = Integer.parseInt(request.getParameter("nickname"));
 		String title = request.getParameter("title");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String description = request.getParameter("description");
@@ -25,18 +25,6 @@ public class InsertQuiz03 extends HttpServlet {
 		
 		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
-		
-		String selectQuery = "select * from `seller`"
-				+ "where `nickname` = \"" + nickname + "\""  ;
-		int sellerId = 0;
-		try {
-			ResultSet res = ms.select(selectQuery);
-			while ( res.next() ) {
-				sellerId = res.getInt("id");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
 		String insertQuery = "";
 		

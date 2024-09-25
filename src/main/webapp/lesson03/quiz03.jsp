@@ -15,10 +15,10 @@ header { height:100px; background-color:#ff7f00;}
 footer {height:150px;}
 #nav {height:100px; background-color:#ff7f00;}
 .contents {min-height:500px;}
-.contents > .item { width:300px; height:250px; border: 1px solid #ff7f00 }
+.contents > .item { width:350px; height:250px; border: 1px solid #ff7f00 }
 .contents > .item:hover { background-color:#ff7f00; }
-.contents > .ditem { width:300px; height:250px;}
-.contents .itemimg { width:290px; height:150px;}
+.contents > .ditem { width:350px; height:250px;}
+.contents .itemimg { width:340px; height:150px;}
 .contents .nickname {color:#ff7f00;}
 </style>
 </head>
@@ -52,7 +52,13 @@ footer {height:150px;}
 				while (res.next()) {
 			%>
 			<div class="item mb-3 p-2">	
-				<div class="itemimg"><img src="<%= res.getString("pictureUrl") %>" alt="상품이미지" width="290px" height="150px"></div>
+				<% if (res.getString("pictureUrl") == null || res.getString("pictureUrl").equals(""))  {%>
+				<div class="itemimg d-flex justify-content-center align-items-center">
+							<h4 class="text-secondary">이미지 없음</h4>
+				</div>
+				<% } else { %>
+				<div class="itemimg"><img src="<%= res.getString("pictureUrl") %>" alt="상품이미지" width="330px" height="150px"></div>
+				<% } %>
 				<div>
 					<div><b><%= res.getString("title") %></b></div>
 					<div class="text-secondary"><%= res.getInt("price") %>원</div>

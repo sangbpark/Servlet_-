@@ -29,11 +29,8 @@ footer {height:150px;}
 	MysqlService ms = MysqlService.getInstance();
 	ms.connect();
 	
-	String selectQuery = "select `seller`.* , `used_goods`.*"
-			+ "from `seller`"
-			+ "join `used_goods`"
-			+ "on `seller`.id = `used_goods`.sellerId "
-			+ "order by `seller`.id desc;";
+	String selectQuery = "select id, nickname from seller";
+
 			
 	ResultSet res = ms.select(selectQuery);
 %>
@@ -59,7 +56,7 @@ footer {height:150px;}
 						<%
 							while (res.next()) {
 						%>
-							<option class="bg-secondary text-white"><%= res.getString("nickname") %></option>
+							<option class="bg-secondary text-white" value="<%= res.getString("id") %>"><%= res.getString("nickname") %></option>
 						<% 
 							}
 						%>
