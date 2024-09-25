@@ -42,7 +42,7 @@ footer {height:150px;}
 		<nav id="nav" class="d-flex align-items-center">
 			<ul class="nav nav-fill w-100 ">
 				<li class="nav-item"><a href="#" class="nav-link text-white">리스트</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-white">물건 올리기</a></li>
+				<li class="nav-item"><a href="/lesson03/quiz03_insert.jsp" class="nav-link text-white">물건 올리기</a></li>
 				<li class="nav-item"><a href="#" class="nav-link text-white">마이 페이지</a></li>
 			</ul>
 		</nav>
@@ -52,7 +52,7 @@ footer {height:150px;}
 				while (res.next()) {
 			%>
 			<div class="item mb-3 p-2">	
-				<div class="itemimg"><img src="" alt="상품이미지" width="290px" height="150px"></div>
+				<div class="itemimg"><img src="<%= res.getString("pictureUrl") %>" alt="상품이미지" width="290px" height="150px"></div>
 				<div>
 					<div><b><%= res.getString("title") %></b></div>
 					<div class="text-secondary"><%= res.getInt("price") %>원</div>
